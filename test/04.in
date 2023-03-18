@@ -1,0 +1,21 @@
+  if ((fd[1] = open(argv[2], O_WRONLY)) < 0) {
+            printf("Can\'t open output file\n");
+            exit(-1);
+        }
+        char res[maxSize];
+        for (int i = 0; i < n; ++i) {
+            char cur[20];
+            sprintf(cur, "%c: %d\n", chars[i], count[i]);
+            sprintf(res, "%s%s", res, cur);
+        }
+        int size = 0;
+        while (res[size] != 0) {
+            size++;
+        }
+        if (write(fd[1], res, size) == -1) {
+            printf("Can\'t read input file\n");
+            exit(-1);
+        }
+        close(fd[0]);
+        close(fd[1]);
+    } else {
