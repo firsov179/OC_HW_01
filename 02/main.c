@@ -14,7 +14,6 @@ int main(int argc, char *argv[]) {
     int fd2;
     char input[maxSize];
     mknod("readChannel", S_IFIFO | 0666, 0);
-    mknod("writeChannel", S_IFIFO | 0666, 0);
     pid_t pid;
     int size, x;
     switch(pid=fork()) {
@@ -80,6 +79,7 @@ int main(int argc, char *argv[]) {
         size++;
     }
     char buff[maxSize];
+    mknod("writeChannel", S_IFIFO | 0666, 0);
     switch(pid=fork()) {
         case -1:
             perror("fork"); // произошла ошибка
