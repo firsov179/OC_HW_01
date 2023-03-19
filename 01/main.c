@@ -15,7 +15,6 @@ int main(int argc, char *argv[]) {
     char input[maxSize];
 
     pipe(fd1);
-    pipe(fd2);
     pid_t pid;
     int size;
     switch(pid=fork()) {
@@ -75,6 +74,7 @@ int main(int argc, char *argv[]) {
         size++;
     }
     char buff[maxSize];
+    pipe(fd2);
     switch(pid=fork()) {
         case -1:
             perror("fork"); // произошла ошибка
